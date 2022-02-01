@@ -20,7 +20,6 @@
                         <li><a href="{{route('contact')}}">Contact</a></li>
                         @guest
                         <li class="btn-cta"><a href="{{route('login')}}"><span>Sign in</span></a></li>
-                        <li class="btn-cta"><a href="{{route('register')}}"><span>Register</span></a></li>
                         @endguest
 
                         @auth

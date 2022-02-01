@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             $post->image()->create([
                 'name' => Str::remove('.jpg',$images[array_rand($images)] ),
                 'extension' => 'jpg',
-                'path' => '/blog_template/images/' . $images[array_rand($images)],
+                'path' => 'blog_template/images/' . $images[array_rand($images)],
             ]);
         });
         \App\Models\User::all()->each(function ($user) use ($images){
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             $user->image()->create([
                 'name' => Str::remove('.jpg',$images[array_rand($images)] ),
                 'extension' => 'jpg',
-                'path' => '/blog_template/images/' . $images[array_rand($images)],
+                'path' => 'blog_template/images/' . $images[array_rand($images)],
             ]);
         });
         \App\Models\Comment::factory(60)->create();
