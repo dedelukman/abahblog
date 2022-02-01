@@ -4,6 +4,7 @@
 
 @section('content')
 
+<?php dd(preg_grep('~\.(jpeg|jpg)$~', scandir(public_path('blog_template/images'))))?>
 
 <div class="colorlib-blog">
     <div class="container">
