@@ -11,7 +11,7 @@
                         <li class="has-dropdown">
                             <a href="courses.html">Categories</a>
                             <ul class="dropdown">
-                                <li><a href="{{route('post')}}">Programming</a></li>
+                                <li><a href="#">Programming</a></li>
                                 <li><a href="#">Games</a></li>
                                 <li><a href="#">Soft Skills</a></li>
                             </ul>

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Post;
-use App\Models\Tag;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $posts = Post::latest()->withCount('comment')->with('author')->paginate(5);
-        $categories = Category::withCount('post')->orderBy('post_count', 'desc')->take(10)->get();
-        $recentposts = Post::latest()->take(3)->get();
-        $tags = Tag::latest()->take(50)->get();
-
-        return view('welcome', compact('posts','recentposts','tags','categories'));
+        return view('contact');
     }
 
     /**
@@ -43,16 +35,29 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $attributes = $request->validate([
+            'first_name' => 'required|min:3',
+            'last_name' => 'required|min:3',
+            'email' => 'required|email',
+            'subject' => 'required|min:5|max:50',
+            'message' => 'required|min:5|max:500',
+        ]);
+
+
+        Contact::create($attributes);
+
+        return redirect()->route('contact')->with('success', 'Message has been sended');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Contact $contact)
     {
         //
     }
@@ -60,10 +65,10 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Contact $contact)
     {
         //
     }
@@ -72,10 +77,10 @@ class HomeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contact $contact)
     {
         //
     }
@@ -83,10 +88,10 @@ class HomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Contact $contact)
     {
         //
     }

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -46,7 +49,23 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $categories = Category::withCount('post')->orderBy('post_count', 'desc')->take(10)->get();
+        $recentposts = Post::latest()->take(3)->get();
+        $tags = Tag::latest()->take(50)->get();
+
+        return view('post', compact('post', 'categories', 'recentposts', 'tags'));
+    }
+
+    public function addComment(Request $request, Post $post){
+
+        $attributes = $request->validate([
+            'the_comment' => 'required|min:10|max:300',
+        ]);
+
+        $attributes['user_id'] = auth()->id();
+        $comment = $post->comment()->create($attributes);
+
+        return redirect('post/' . $post->slug . '#comment_' . $comment->id)->with('success', 'Comment has been added');
     }
 
     /**

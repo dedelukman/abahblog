@@ -34,36 +34,42 @@
                 <h2>Message Us</h2>
             </div>
             <div class="col-md-6">
-                <form action="#">
+                <form method="POST" action="{{route('contact.store')}}">
+                    @csrf
                     <div class="row form-group">
                         <div class="col-md-6">
                             <!-- <label for="fname">First Name</label> -->
-                            <input type="text" id="fname" class="form-control" placeholder="Your firstname">
+                            <x-blog.form.input name="first_name" placeholder="Your Firstname" value="{{ old('first_name')}}"/>
+                            <small class="error text-danger first_name"></small>
                         </div>
                         <div class="col-md-6">
                             <!-- <label for="lname">Last Name</label> -->
-                            <input type="text" id="lname" class="form-control" placeholder="Your lastname">
+                            <x-blog.form.input name="last_name" placeholder="Your Lastname" value="{{ old('last_name')}}"/>
+                            <small class="error text-danger last_name"></small>
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
                             <!-- <label for="email">Email</label> -->
-                            <input type="text" id="email" class="form-control" placeholder="Your email address">
+                            <x-blog.form.input name="email" placeholder="Your Email" value="{{ old('email')}}" type="email"/>
+                            <small class="error text-danger email"></small>
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
                             <!-- <label for="subject">Subject</label> -->
-                            <input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
+                            <x-blog.form.input name="subject" placeholder="Subject" value="{{ old('subject')}}"/>
+                            <small class="error text-danger subject"></small>
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
                             <!-- <label for="message">Message</label> -->
-                            <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+                            <x-blog.form.textarea name="message" placeholder="Say something about us" value="{{ old('message')}}"/>
+                            <small class="error text-danger message"></small>
                         </div>
                     </div>
                     <div class="form-group">
@@ -74,7 +80,9 @@
             <div class="col-md-6">
                 <div id="map" class="colorlib-map"></div>
             </div>
+
         </div>
+         <x-blog.message :status="'success'"/>
     </div>
 </div>
 

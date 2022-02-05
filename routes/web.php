@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,17 +19,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/post', function () {
-    return view('post');
-})->name('post');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/about',AboutController::class)->name('about');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.show');
+Route::middleware(['auth'])->post('/post/{post:slug}', [PostController::class, 'addComment'])->name('post.addcomment');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
