@@ -19,3 +19,8 @@
 <script src="{{ asset('blog_template/js/jquery.countTo.js')}}"></script>
 <!-- Main -->
 <script src="{{ asset('blog_template/js/main.js')}}"></script>
+
+
+<script src="{{ asset('js/function.js')}}"></script>
+
+

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Contact as MailContact;
+use App\Mail\Test;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
@@ -35,19 +39,45 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+        $data = array();
+        $data['success'] = 0;
+        $data['errors'] = [];
 
-        $attributes = $request->validate([
+        $rules = [
             'first_name' => 'required|min:3',
             'last_name' => 'required|min:3',
             'email' => 'required|email',
             'subject' => 'required|min:5|max:50',
             'message' => 'required|min:5|max:500',
-        ]);
+        ];
 
+        $validated = Validator::make(request()->all(), $rules);
 
-        Contact::create($attributes);
+        if ($validated->fails()) {
+            $data['errors']['first_name'] = $validated->errors()->first('first_name');
+            $data['errors']['last_name'] = $validated->errors()->first('last_name');
+            $data['errors']['email'] = $validated->errors()->first('email');
+            $data['errors']['subject'] = $validated->errors()->first('subject');
+            $data['errors']['message'] = $validated->errors()->first('message');
 
-        return redirect()->route('contact')->with('success', 'Message has been sended');
+        } else {
+            $attributes = $validated->validated();
+
+            Contact::create($attributes);
+
+            Mail::to("dlukmanul.h@gmail.com")->send(new MailContact(
+                $attributes['first_name'],
+                $attributes['last_name'],
+                $attributes['email'],
+                $attributes['subject'],
+                $attributes['message'],
+            ));
+
+            $data['success'] = 1;
+            $data['message'] = "Thank you for contacting with us";
+        }
+
+        return response()->json($data);
 
     }
 

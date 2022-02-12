@@ -24,6 +24,8 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{ asset('blog_template/css/style.css')}}">
 
+	<link rel="stylesheet" href="{{ asset('css/mystyle.css')}}">
+
 	<!-- Modernizr JS -->
 	<script src="{{ asset('blog_template/js/modernizr-2.6.2.min.js')}}"></script>
 	<!-- FOR IE9 below -->
