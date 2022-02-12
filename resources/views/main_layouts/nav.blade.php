@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
-                    <div id="colorlib-logo"><a href="index.html">Blog</a></div>
+                    <div id="colorlib-logo"><a href="{{route('home')}}">Blog</a></div>
                 </div>
                 <div class="col-md-10 text-right menu-1">
                     <ul>
@@ -30,6 +30,10 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                                 </form>
+                                @if (  Auth::user()->role_id === 1)
+                                    <li><a href="{{ route('admin.index')}}">Dashboard</a></li>
+                                @endif
+
                             </ul>
                         </li>
                         @endauth

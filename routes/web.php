@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminControllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -19,8 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Front User
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.show');
@@ -40,5 +42,13 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+// Admin Dashboard
+
+Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function(){
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+});
+
 
 require __DIR__.'/auth.php';
