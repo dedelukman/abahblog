@@ -9,7 +9,7 @@
             <div class="desc">
                 <p class="admin"><span>{{$recentpost->created_at->diffforhumans()}}</span></p>
                 <h2><a href="{{ route('post.show', $recentpost)}}">{{ Str::limit($recentpost->title,15)}}</a></h2>
-                <p>{{ Str::limit($recentpost->body,50)}}</p>
+                {!! Str::limit($recentpost->body,50) !!}
             </div>
         </div>
     @endforeach

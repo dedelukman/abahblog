@@ -15,7 +15,7 @@
                             </div>
                             <div class="desc desc2">
                                 <h3><a href="#">{{$post->title}}</a></h3>
-                                <p>{{$post->body}}</p>
+                                {!! $post->body !!}
                                 <p><a href="#" class="btn btn-primary btn-outline btn-lg">Live Preview</a> or <a href="#" class="btn btn-primary btn-lg">Download File</a></p>
                             </div>
                         </div>

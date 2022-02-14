@@ -14,7 +14,8 @@
                         <a href="#" class="blog-img" style="background-image: url( {{$post->image->path }} );"></a>
                         <div class="text">
                         <h3 class="heading"><a href="{{ route('post.show', $post)}}">{{ $post->title}}</a></h3>
-                        <p>{{Str::limit($post->body, 70)}}</p>
+                        {!! Str::limit($post->body, 70) !!}
+
                         <div class="meta">
                             <div><a href="#"><span class="icon-calendar"></span> {{date_format($post->created_at,"M d, Y")}}</a></div>
                             <div><a href="#"><span class="icon-user2"></span> {{$post->author->name}}</a></div>
