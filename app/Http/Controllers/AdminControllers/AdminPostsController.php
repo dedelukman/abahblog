@@ -27,7 +27,7 @@ class AdminPostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->orderBy('id', 'DESC')->get();
+        $posts = Post::with('category')->orderBy('id', 'DESC')->paginate(10);
         return view('admin_dashboard.posts.index', compact('posts'));
     }
 
@@ -137,6 +137,8 @@ class AdminPostsController extends Controller
     {
         $this->rules['thumbnail' ]= 'nullable|file|mimes:jpg,png,webp,svg,jpeg|dimensions:max_width=800,max_height=300';
         $validated = $request->validate($this->rules);
+        $validated['slug'] = Str::slug($request->title);
+
 
         $post->update($validated);
 

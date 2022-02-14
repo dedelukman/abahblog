@@ -6,13 +6,13 @@
 			<div class="page-content">
 				<!--breadcrumb-->
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">Posts</div>
+					<div class="breadcrumb-title pe-3">{{$category->name}} Posts</div>
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="{{ route('admin.index')}}"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">All Posts</li>
+								<li class="breadcrumb-item active" aria-current="page">Category Posts</li>
 							</ol>
 						</nav>
 					</div>
@@ -34,7 +34,7 @@
 									<tr>
 										<th>Post#</th>
 										<th>Title</th>
-										<th>Category</th>
+
 										<th>Author</th>
 										<th>Views</th>
 										<th>Status</th>
@@ -43,7 +43,7 @@
 									</tr>
 								</thead>
 								<tbody>
-                                    @foreach ($posts as $post)
+                                    @foreach ($category->post as $post)
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
@@ -56,7 +56,7 @@
                                                 </div>
                                             </td>
                                             <td> {{Str::limit($post->title, 20)}}</td>
-                                            <td> {{$post->category->name}}</td>
+
                                             <td> {{$post->author->name}}</td>
                                             <td> {{$post->views}}</td>
                                             <td>
@@ -79,9 +79,7 @@
 								</tbody>
 							</table>
 						</div>
-                        <div class='mt-4'>
-                            {{ $posts->links() }}
-                        </div>
+
 					</div>
 				</div>
 
