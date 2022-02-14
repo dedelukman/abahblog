@@ -191,7 +191,7 @@ class AdminPostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->tag()->delete();
+        $post->tag()->detach();
         $post->delete();
         return redirect()->route('admin.posts.index')->with('success', 'Post has been Deleted.');
     }
