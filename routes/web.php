@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminControllers\AdminCategoriesController;
 use App\Http\Controllers\AdminControllers\AdminCommentsController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
+use App\Http\Controllers\AdminControllers\AdminRolesController;
 use App\Http\Controllers\AdminControllers\AdminTagsController;
 use App\Http\Controllers\AdminControllers\DashboardController;
 use App\Http\Controllers\AdminControllers\TinyMCEController;
@@ -51,7 +52,7 @@ Route::get('/dashboard', function () {
 
 // Admin Dashboard
 
-Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function(){
+Route::middleware(['auth', 'checkPermission'])->prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::post('upload_tinymce_image', [TinyMCEController::class, 'upload_tinymce_image'])->name('upload_tinymce_image');
 
@@ -59,6 +60,7 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::resource('categories', AdminCategoriesController::class);
     Route::resource('tags', AdminTagsController::class)->only(['index','show','destroy']);
     Route::resource('comments', AdminCommentsController::class)->except(['show']);
+    Route::resource('roles', AdminRolesController::class)->except(['show']);
 
 
 });

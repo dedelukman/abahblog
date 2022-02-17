@@ -30,7 +30,7 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                                 </form>
-                                @if (  Auth::user()->role_id === 1)
+                                @if (  Auth::user()->role_id !== 3)
                                     <li><a href="{{ route('admin.index')}}">Dashboard</a></li>
                                 @endif
 
