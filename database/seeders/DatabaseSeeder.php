@@ -55,5 +55,7 @@ class DatabaseSeeder extends Seeder
         });
         \App\Models\Comment::factory(60)->create();
 
+        \App\Models\About::factory(1)->create();
+
     }
 }

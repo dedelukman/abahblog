@@ -9,8 +9,8 @@
         <div class="row">
             <div class="col-md-7">
                 <div class="about-desc">
-                    <div class="about-img-1 animate-box" style="background-image: url(storage/images/about-img-2.jpg);"></div>
-                    <div class="about-img-2 animate-box" style="background-image: url(storage/images/about-img-1.jpg);"></div>
+                    <div class="about-img-1 animate-box" style="background-image: url({{$about->about_second_image}});"></div>
+                    <div class="about-img-2 animate-box" style="background-image: url({{$about->about_first_image}});"></div>
                 </div>
             </div>
             <div class="col-md-5">
@@ -22,8 +22,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 animate-box">
-                        <p><strong>Even the all-powerful Pointing has no control about the blind texts</strong></p>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                        <p><strong>{{ $about->about_first_text}}</strong></p>
+                        <p>{{ $about->about_second_text}}</p>
                     </div>
                     <div class="col-md-6 col-xs-6 animate-box">
                         <div class="counter-entry">
@@ -82,14 +82,7 @@
                      </div>
                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                          <div class="panel-body">
-                             <div class="row">
-                                          <div class="col-md-6">
-                                              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                          </div>
-                                      </div>
+                            {{$about->about_our_mission}}
                          </div>
                      </div>
                  </div>
@@ -102,11 +95,7 @@
                      </div>
                      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                          <div class="panel-body">
-                             <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                        <ul>
-                                            <li>Separated they live in Bookmarksgrove right</li>
-                                            <li>Separated they live in Bookmarksgrove right</li>
-                                        </ul>
+                            {{$about->about_our_vision}}
                          </div>
                      </div>
                  </div>
@@ -119,7 +108,7 @@
                      </div>
                      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                          <div class="panel-body">
-                             <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                            {{$about->about_services}}
                          </div>
                      </div>
                  </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -14,6 +15,7 @@ class AboutController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('about');
+        $about = About::find(1);
+        return view('about', compact('about'));
     }
 }
