@@ -29,7 +29,7 @@ class AdminAboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
         $validated = request()->validate([
             'about_first_text' => 'required|min:50,max:500',
@@ -44,15 +44,15 @@ class AdminAboutController extends Controller
         if(request()->has('about_first_image'))
         {
             $about_first_image = request()->file('about_first_image');
-            $path = $about_first_image->store('setting', 'public');
-            $validated['about_first_image'] = $path;
+            $path = $about_first_image->store('images', 'public');
+            $validated['about_first_image'] ='storage/'. $path;
         }
 
         if(request()->has('about_second_image'))
         {
             $about_second_image = request()->file('about_second_image');
-            $path = $about_second_image->store('setting', 'public');
-            $validated['about_second_image'] = $path;
+            $path = $about_second_image->store('images', 'public');
+            $validated['about_second_image'] = 'storage/'. $path;
         }
 
         About::find(1)->update($validated);
