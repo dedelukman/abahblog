@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminControllers\AdminCategoriesController;
 use App\Http\Controllers\AdminControllers\AdminCommentsController;
+use App\Http\Controllers\AdminControllers\AdminContactsController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
 use App\Http\Controllers\AdminControllers\AdminRolesController;
 use App\Http\Controllers\AdminControllers\AdminTagsController;
@@ -63,7 +64,7 @@ Route::middleware(['auth', 'checkPermission'])->prefix('admin')->name('admin.')-
     Route::resource('comments', AdminCommentsController::class)->except(['show']);
     Route::resource('roles', AdminRolesController::class)->except(['show']);
     Route::resource('users', AdminUsersController::class);
-
+    Route::resource('contacts', AdminContactsController::class)->only(['index','destroy']);
 
 });
 
