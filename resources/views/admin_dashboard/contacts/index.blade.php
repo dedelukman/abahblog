@@ -100,7 +100,6 @@
                         title: 'Abah Blog',
                     }
                 ]
-
 			} );
 
 			table.buttons().container()
